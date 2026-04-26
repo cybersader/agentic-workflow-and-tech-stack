@@ -1,0 +1,300 @@
+/* Global overrides on top of starlight-theme-flexoki */
+
+:root {
+  /* Stratum badge color tokens — override if Flexoki provides specific ones */
+  --sl-color-purple: #8b5fba;
+  --sl-color-blue: #205ea6;
+  --sl-color-green: #66800b;
+  --sl-color-yellow: #ad8301;
+  --sl-color-gray-3: #878580;
+  --sl-color-gray-5: #575653;
+}
+
+:root[data-theme="dark"] {
+  --sl-color-purple: #b37fc8;
+  --sl-color-blue: #4385be;
+  --sl-color-green: #879a39;
+  --sl-color-yellow: #d0a215;
+  --sl-color-gray-3: #878580;
+  --sl-color-gray-5: #b7b5ac;
+}
+
+/* Tighten the principle page reading width slightly */
+.sl-markdown-content {
+  line-height: 1.65;
+}
+
+/* Hero section custom styling */
+.hero-tagline {
+  font-size: 1.1em;
+  color: var(--sl-color-gray-3);
+  margin-top: -0.5em;
+}
+
+/* Mobile "On this page" TOC toggle — Flexoki's --sl-color-gray-7 in dark mode
+ * is a light tan; default button text also light → nearly invisible.
+ * Force legible foreground for both modes. */
+mobile-starlight-toc .toggle,
+mobile-starlight-toc .toggle * {
+  color: var(--sl-color-text) !important;
+}
+
+/* ─── Obsidian callouts (remark-obsidian-callout only adds data-attrs) ────── */
+
+[data-callout] {
+  --callout-color: var(--sl-color-gray-3);
+  border-inline-start: 4px solid var(--callout-color);
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: color-mix(in srgb, var(--callout-color) 10%, transparent);
+}
+[data-callout="note"]     { --callout-color: var(--sl-color-blue,   #4b8dde); }
+[data-callout="tip"],
+[data-callout="hint"]     { --callout-color: var(--sl-color-green,  #3fa55d); }
+[data-callout="warning"],
+[data-callout="caution"]  { --callout-color: var(--sl-color-yellow, #d4a73a); }
+[data-callout="important"] { --callout-color: var(--sl-color-accent, #8c7851); }
+[data-callout="danger"],
+[data-callout="error"]    { --callout-color: #c1666b; }
+[data-callout="quote"]    { --callout-color: var(--sl-color-gray-3); }
+
+[data-callout] .callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--callout-color);
+  margin: 0;
+}
+[data-callout] .callout-title-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+[data-callout] .callout-title-icon svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+/* remark-obsidian-callout doesn't wrap content in .callout-content —
+   paragraphs are direct children of <blockquote>. So target siblings of
+   .callout-title instead. */
+[data-callout] > :not(.callout-title) {
+  margin-top: 0.5rem;
+}
+[data-callout] > :first-child { margin-top: 0; }
+[data-callout] > :last-child { margin-bottom: 0; }
+
+/* Expandable — make the title clickable + show chevron */
+[data-expandable="true"] .callout-title {
+  cursor: pointer;
+  user-select: none;
+}
+[data-expandable="true"] .callout-title::after {
+  content: "›";
+  margin-inline-start: auto;
+  font-size: 1.4em;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+[data-expandable="true"][data-expanded="true"] .callout-title::after {
+  transform: rotate(90deg);
+}
+/* CSS_PROBE_2026_04_18_V2 — forcing cache invalidation */
+[data-expandable="true"][data-expanded="false"] > :not(.callout-title) {
+  display: none !important;
+}
+
+/* ─── Progressive-disclosure flow (landing page) ──────────────────────── */
+
+.pd-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 1.5rem 0;
+  max-width: 46rem;
+}
+.pd-start {
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px dashed currentColor;
+  opacity: 0.75;
+}
+.pd-arrow {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--sl-color-gray-3);
+  padding: 0.15rem 0;
+  letter-spacing: 0.02em;
+}
+.pd-arrow em { font-style: italic; opacity: 0.85; }
+
+.pd-stage {
+  --col: var(--sl-color-gray-3);
+  border: 1px solid var(--col);
+  border-left: 4px solid var(--col);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: color-mix(in srgb, var(--col) 6%, transparent);
+}
+.pd-stage-kernel  { --col: var(--sl-color-purple, #9b6cd8); }
+.pd-stage-stack   { --col: var(--sl-color-blue,   #4b8dde); }
+.pd-stage-work    { --col: var(--sl-color-green,  #3fa55d); }
+.pd-stage-output  { --col: var(--sl-color-accent, #8c7851); }
+.pd-stage-runtime { --col: var(--sl-color-gray-5, #666); border-style: dashed; }
+
+.pd-stage-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+.pd-stage-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--col);
+  color: var(--sl-color-bg, #fff);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.pd-stage-title {
+  font-weight: 600;
+  color: var(--col);
+  font-size: 1.02rem;
+}
+.pd-stage-hint {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--sl-color-gray-3);
+  font-style: italic;
+}
+.pd-stage-body { font-size: 0.9rem; line-height: 1.5; }
+.pd-stage-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+.pd-tag {
+  --col: var(--sl-color-gray-3);
+  display: inline-block;
+  padding: 0.05rem 0.45rem;
+  border-radius: 0.3rem;
+  font-size: 0.72rem;
+  font-family: var(--__sl-font-mono, monospace);
+  color: var(--col);
+  background: color-mix(in srgb, var(--col) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--col) 30%, transparent);
+}
+.pd-stratum-kernel { --col: var(--sl-color-purple, #9b6cd8); }
+.pd-stratum-stack  { --col: var(--sl-color-blue,   #4b8dde); }
+.pd-stratum-work   { --col: var(--sl-color-green,  #3fa55d); }
+.pd-tag-gray       { --col: var(--sl-color-gray-3, #9a9a9a); }
+
+.pd-divider {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--sl-color-gray-3);
+  border-top: 1px dashed currentColor;
+  border-bottom: 1px dashed currentColor;
+  padding: 0.4rem 0.5rem;
+  margin: 0.3rem 0;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+}
+
+/* ─── Five-strata header diagram ────────────────────────────────────────── */
+
+.strata-diagram {
+  margin: 1rem 0 2rem 0;
+}
+.strata-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--sl-color-gray-3);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.4rem;
+}
+.strata-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+.strata-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  border: 1px solid var(--strata-color);
+  background: color-mix(in srgb, var(--strata-color) 12%, transparent);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+.strata-card:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--strata-color) 22%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--strata-color) 25%, transparent);
+}
+.strata-card-1 { --strata-color: var(--sl-color-purple,  #9b6cd8); }
+.strata-card-2 { --strata-color: var(--sl-color-blue,    #4b8dde); }
+.strata-card-3 { --strata-color: var(--sl-color-green,   #3fa55d); }
+.strata-card-4 { --strata-color: var(--sl-color-yellow,  #d4a73a); }
+.strata-card-5 { --strata-color: var(--sl-color-gray-3,  #9a9a9a); }
+
+.strata-level,
+.strata-name,
+.strata-tag {
+  display: block;  /* <span> children of <a> need display: block for stacking */
+}
+.strata-level {
+  font-family: var(--__sl-font-mono, monospace);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--strata-color);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.1rem;
+}
+.strata-name {
+  font-weight: 600;
+  color: var(--sl-color-text-accent, var(--strata-color));
+  font-size: 1rem;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+.strata-tag {
+  font-size: 0.78rem;
+  color: var(--sl-color-gray-3);
+  line-height: 1.3;
+}
+@media (max-width: 50rem) {
+  .strata-row { grid-template-columns: repeat(2, 1fr); }
+  .strata-card-5 { grid-column: 1 / -1; }
+}
+
+/* ─── Sidebar nesting indent ──────────────────────────────────────
+ * Flexoki sets --sl-sidebar-item-padding-inline: 0.45rem which
+ * flattens visual hierarchy (~14px per nest level is invisible at
+ * a glance). Restore clearer indentation + a subtle guide line so
+ * child pages visually belong to their parent group.
+ */
+.sidebar-content ul ul li {
+  margin-inline-start: 0.75rem;
+  padding-inline-start: 0.75rem;
+  border-inline-start: 1px solid var(--sl-color-gray-5);
+}
+
+.sidebar-content ul ul li > a,
+.sidebar-content ul ul li > details > summary {
+  /* Slightly lighter weight so children read as children */
+  font-weight: 400;
+}

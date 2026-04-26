@@ -1,0 +1,47 @@
+{
+  "name": "agentic-workflow-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preflight": "bun scripts/preflight.mjs",
+    "sync": "bun scripts/sync-content.mjs",
+    "sync:dry": "bun scripts/sync-content.mjs --dry-run",
+    "dev": "bun run preflight && bun run sync && astro dev",
+    "dev:host": "bun run preflight && bun run sync && astro dev --host 0.0.0.0",
+    "build": "bun run preflight && bun run sync && bun scripts/rewrite-base.mjs && astro build",
+    "preview": "astro preview",
+    "check:frontmatter": "bun scripts/check-frontmatter.mjs",
+    "check:astro": "astro check",
+    "check": "bun run check:frontmatter && bun run check:astro",
+    "serve": "bun scripts/serve.mjs",
+    "serve:dev": "bun scripts/serve.mjs dev",
+    "serve:preview": "bun scripts/serve.mjs preview",
+    "serve:tailscale": "bun scripts/serve.mjs tailscale",
+    "serve:dev-share": "bun scripts/serve.mjs dev-share",
+    "smoke": "bun scripts/smoke.mjs",
+    "smoke:no-build": "bun scripts/smoke.mjs --no-build",
+    "check-links": "bun scripts/check-links.mjs",
+    "check-links:build": "bun scripts/check-links.mjs --build",
+    "visual": "bun scripts/visual.mjs",
+    "visual:stack": "bun scripts/visual.mjs /stack/ mobile",
+    "visual:principles": "bun scripts/visual.mjs /principles/ mobile",
+    "visual:desktop": "bun scripts/visual.mjs /stack/ desktop",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.38.0",
+    "astro": "^6.0.0",
+    "rehype-external-links": "^3.0.0",
+    "rehype-raw": "^7.0.0",
+    "remark-obsidian-callout": "^1.5.1",
+    "remark-wiki-link": "^2.0.1",
+    "sharp": "^0.33.0",
+    "starlight-image-zoom": "^0.14.1",
+    "starlight-site-graph": "^0.5.0",
+    "starlight-theme-flexoki": "^0.2.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.59.1"
+  }
+}

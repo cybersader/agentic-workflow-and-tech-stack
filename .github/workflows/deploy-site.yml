@@ -1,0 +1,85 @@
+name: Deploy Starlight site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - '01-kernel/**'
+      - '02-stack/**'
+      - '03-work/**'
+      - '.github/workflows/deploy-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        working-directory: site
+        run: bun install --frozen-lockfile || bun install
+
+      - name: Build site (sync content + astro build)
+        working-directory: site
+        run: bun run build
+
+      - name: Check internal links & orphans
+        working-directory: site
+        # Reports broken links, unresolved wikilinks, and orphan pages.
+        # Report: site/scripts/link-report.md (uploaded as artifact below).
+        #
+        # `continue-on-error: true` is a temporary baseline setting: the
+        # repo has ~90 pre-existing broken links (patterns/, ROADMAP/, etc.
+        # that aren't synced yet). Flip to false once those are resolved
+        # so new broken links start failing PRs.
+        run: bun run check-links
+        continue-on-error: true
+
+      - name: Upload link report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-report
+          path: site/scripts/link-report.md
+          if-no-files-found: ignore
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

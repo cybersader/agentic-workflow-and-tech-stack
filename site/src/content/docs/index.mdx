@@ -1,0 +1,200 @@
+---
+title: Agentic Workflow & Tech Stack
+description: A portable progressive-disclosure scaffold and agent-memory system for filesystem-based AI agent workflows. Rebuild your dev machine from a git clone.
+template: splash
+hero:
+  tagline: Rebuild your dev machine from a git clone.
+  actions:
+    - text: Principles & Foundations →
+      link: /agentic-workflow-and-tech-stack/principles/
+      icon: right-arrow
+      variant: primary
+    - text: What's the vision?
+      link: /agentic-workflow-and-tech-stack/start/philosophy/
+      icon: external
+      variant: secondary
+    - text: GitHub
+      link: https://github.com/cybersader/agentic-workflow-and-tech-stack
+      icon: github
+      variant: minimal
+---
+
+<div class="vision-block">
+
+If I got a new computer tomorrow and lost everything, I could clone this repo, run setup, and accurately recreate all my patterns and ways of developing software. This is a **portable rebuild-my-machine scaffold** — and a progressively-disclosed memory system for the AI agents that work alongside me.
+
+</div>
+
+## What this is
+
+A three-tier **scaffolding + agent-memory system** for filesystem-based AI agent workflows. Not a knowledge base itself — a system that structures *how* knowledge work and project development happens, and that AI agents progressively disclose into context as the work gets more specific.
+
+<div class="tier-grid">
+
+<div class="tier-card">
+
+### 01 · Kernel
+
+Universal, forkable scaffold. Philosophy, patterns, parametric templates, deterministic scripts. Anyone can adopt this.
+
+[Explore the kernel →](/agentic-workflow-and-tech-stack/kernel/)
+
+</div>
+
+<div class="tier-card">
+
+### 02 · Stack
+
+Opinionated toolkit — Claude Code + OpenCode + Obsidian + Zellij + Tailscale. Fork-worthy for similar setups. "Dotfiles for agentic development."
+
+[Explore the stack →](/agentic-workflow-and-tech-stack/stack/)
+
+</div>
+
+<div class="tier-card">
+
+### 03 · Work
+
+Personal project patterns, agent-consumable preferences, rebuild-my-machine guide. The case study that demonstrates the kernel works.
+
+[Explore my work →](#private-reference)
+
+</div>
+
+</div>
+
+## Why three tiers?
+
+The three tiers are **organizational sections**, not strata themselves. They separate *how portable a section is* so each can be shared, forked, or kept private on its own lifecycle:
+
+- **Tier 1 — Kernel**: universal claims about knowledge work. Forkable as-is.
+- **Tier 2 — Stack**: opinionated patterns assuming my tooling. Forkable with adaptation.
+- **Tier 3 — Work**: parametric templates of *my* workflow. A worked example for forks, not a payload to inherit verbatim.
+
+**What's NOT in any tier** is live state — the actual running machines, Obsidian vault, Claude sessions. The portable scaffold tops out around **stratum 3** (parametric templates); stratum 4 (deterministic scripts) and stratum 5 (live instance) are generated when you *run* the scaffold.
+
+Three orthogonal classification axes apply to every page. The one-sentence crib:
+
+> **Tier asks *who*. Stratum asks *how portable*. Tier-of-abstraction asks *what's assumed*.**
+
+| Axis | Answers | Where |
+|---|---|---|
+| **Tier** (1 / 2 / 3) | WHO is this for? | The section it lives in (kernel / stack / work) |
+| **Stratum** (1–5) | HOW MUCH of this transfers if copied? | [Five strata](/agentic-workflow-and-tech-stack/principles/07-five-strata/) — colored badge under each page title |
+| **Tier of abstraction** (0 / 1 / 2) | WHAT substrate does this claim assume? | [Tiers of abstraction](/agentic-workflow-and-tech-stack/principles/00-tiers-of-abstraction/) — zero-tier = paper+pencil, tier-1 = digital, tier-2 = LLM-agentic |
+
+See [Philosophical Alignment](/agentic-workflow-and-tech-stack/start/philosophical-alignment/) for the thinkers and traditions behind the claims (Thomistic / virtue-ethics lineage for moral framings; Alexander, Drucker, Simon, Wittgenstein for the structural ones).
+
+Both classification axes are **lenses, not taxonomies** — real artifacts slide between strata and tiers. The labels help agents weight "how stable is this advice" without pretending certainty.
+
+### Progressive disclosure in practice
+
+An AI agent working with a user of this scaffold progressively discloses into context:
+
+<div class="pd-flow">
+
+<div class="pd-start">
+  <strong>Agent starts a task</strong>
+</div>
+
+<div class="pd-arrow">↓ always</div>
+
+<div class="pd-stage pd-stage-kernel">
+  <div class="pd-stage-head">
+    <span class="pd-stage-num">1</span>
+    <span class="pd-stage-title">Load Kernel</span>
+    <span class="pd-stage-hint">always</span>
+  </div>
+  <div class="pd-stage-body">
+    Stable, small, cache-friendly. Capture→work→output, progressive disclosure, five strata, tier-of-abstraction, SEACOW.
+  </div>
+  <div class="pd-stage-tags">
+    <span class="pd-tag">Tier 1 · kernel</span>
+    <span class="pd-tag pd-stratum-kernel">Stratum 1–2</span>
+    <span class="pd-tag">Tier-of-Abstraction 0</span>
+  </div>
+</div>
+
+<div class="pd-arrow">↓ <em>if setup matches (WSL + Claude + Obsidian)</em></div>
+
+<div class="pd-stage pd-stage-stack">
+  <div class="pd-stage-head">
+    <span class="pd-stage-num">2</span>
+    <span class="pd-stage-title">+ Stack</span>
+    <span class="pd-stage-hint">conditional on toolkit</span>
+  </div>
+  <div class="pd-stage-body">
+    Opinionated patterns. "Use Zellij for sessions, Portagenty to launch, the WezTerm upgrade config if they want clone-tab-at-cwd."
+  </div>
+  <div class="pd-stage-tags">
+    <span class="pd-tag">Tier 2 · stack</span>
+    <span class="pd-tag pd-stratum-stack">Stratum 2–3</span>
+    <span class="pd-tag">Tier-of-Abstraction 1–2</span>
+  </div>
+</div>
+
+<div class="pd-arrow">↓ <em>if project type recognized (e.g. Astro+Starlight docs site)</em></div>
+
+<div class="pd-stage pd-stage-work">
+  <div class="pd-stage-head">
+    <span class="pd-stage-num">3</span>
+    <span class="pd-stage-title">+ Work</span>
+    <span class="pd-stage-hint">conditional on project + user</span>
+  </div>
+  <div class="pd-stage-body">
+    Parametric templates of the user's workflow. "Apply the Astro+Starlight+Flexoki pattern, use these bashrc aliases, reference `memory/tool-picks.md`."
+  </div>
+  <div class="pd-stage-tags">
+    <span class="pd-tag">Tier 3 · work</span>
+    <span class="pd-tag pd-stratum-work">Stratum 3</span>
+    <span class="pd-tag">Tier-of-Abstraction 2</span>
+  </div>
+</div>
+
+<div class="pd-arrow">↓ agent scaffolds</div>
+
+<div class="pd-stage pd-stage-output">
+  <div class="pd-stage-head">
+    <span class="pd-stage-num">✓</span>
+    <span class="pd-stage-title">Scaffolds in the user's patterns</span>
+  </div>
+  <div class="pd-stage-body">
+    Everything up to here is <strong>inside the scaffold repo</strong>. The agent's output at this stage is still a proposal / a plan / a new file — not running state.
+  </div>
+</div>
+
+<div class="pd-divider">
+  <span>inside the scaffold repo ↑</span>
+  <span>↓ generated when run</span>
+</div>
+
+<div class="pd-stage pd-stage-runtime">
+  <div class="pd-stage-head">
+    <span class="pd-stage-num">▸</span>
+    <span class="pd-stage-title">Running the work</span>
+    <span class="pd-stage-hint">outside this repo</span>
+  </div>
+  <div class="pd-stage-body">
+    Deterministic scripts execute, live state accrues — on a specific laptop, with specific SSH sessions, inside a specific Obsidian vault, across specific Claude conversations.
+  </div>
+  <div class="pd-stage-tags">
+    <span class="pd-tag pd-tag-gray">outside repo</span>
+    <span class="pd-tag pd-stratum pd-tag-gray">Stratum 4 + 5</span>
+    <span class="pd-tag pd-tag-gray">Tier-of-Abstraction 2</span>
+  </div>
+</div>
+
+</div>
+
+
+## Start here
+
+- **[Principles & Foundations](/agentic-workflow-and-tech-stack/principles/)** — ten claims about how structured cognitive work actually works. The DNA.
+- **[Philosophy](/agentic-workflow-and-tech-stack/start/philosophy/)** — the condensed version.
+- **[Kernel Reference](/agentic-workflow-and-tech-stack/kernel/)** — what the scaffold contains.
+- **[Tech Stack](/agentic-workflow-and-tech-stack/stack/)** — my opinionated toolkit.
+- **[My Work](#private-reference)** — how I apply all of the above.
+
+## Status
+
+This site is under active construction. The **Principles & Foundations** section is stable; tier content in **Stack**, **Work**, and rebuild guides is being populated. The repo itself is private during a PII audit pass; the live site will become publicly visible once audit is complete.

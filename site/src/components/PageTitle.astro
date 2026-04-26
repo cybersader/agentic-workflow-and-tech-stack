@@ -1,0 +1,138 @@
+---
+/**
+ * Custom PageTitle that adds stratum + status badges to Starlight pages.
+ *
+ * Reads from Astro.locals.starlightRoute (Starlight v0.38+ API):
+ *   - stratum: 1 | 2 | 3 | 4 | 5
+ *   - status: research | planning | stable | parked
+ *   - date: YYYY-MM-DD
+ */
+import Default from "@astrojs/starlight/components/PageTitle.astro";
+
+const starlightRoute = (Astro.locals as any)?.starlightRoute;
+const frontmatter = starlightRoute?.entry?.data ?? {};
+
+const stratum =
+  frontmatter.stratum != null ? String(frontmatter.stratum) : null;
+const status =
+  typeof frontmatter.status === "string" ? frontmatter.status : null;
+const date = typeof frontmatter.date === "string" ? frontmatter.date : null;
+
+const stratumLabels: Record<string, { label: string; tooltip: string }> = {
+  "1": { label: "Philosophy", tooltip: "Stratum 1 — invariant. Always true, everywhere." },
+  "2": { label: "Pattern", tooltip: "Stratum 2 — named pattern. Same shape, different content." },
+  "3": { label: "Parametric", tooltip: "Stratum 3 — template. Fill-in-the-blank." },
+  "4": { label: "Deterministic", tooltip: "Stratum 4 — drop-in script or fixed content." },
+  "5": { label: "Instance", tooltip: "Stratum 5 — specific to this user; not a template." },
+};
+
+const statusLabels: Record<string, string> = {
+  research: "🔬 Research",
+  planning: "📋 Planning",
+  stable: "✓ Stable",
+  parked: "💤 Parked",
+};
+
+const stratumInfo = stratum ? stratumLabels[stratum] : null;
+const statusLabel = status ? statusLabels[status] || status : null;
+
+// Anchor the badge to the principle page that defines the strata.
+// The five-strata.md principle lives at 01-kernel/principles/07-five-strata.md,
+// which site/scripts/sync-content.mjs maps to /principles/07-five-strata/.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const stratumHref = stratum
+  ? `${base}/principles/07-five-strata/#stratum-${stratum}`
+  : null;
+---
+
+<Default {...Astro.props} />
+{(stratumInfo || statusLabel || date) && (
+  <div class="page-badges">
+    {stratumInfo && stratumHref && (
+      <a
+        href={stratumHref}
+        class={`stratum-badge stratum-${stratum}`}
+        title={`${stratumInfo.tooltip} — click to see all five strata.`}
+      >
+        S{stratum} · {stratumInfo.label}
+      </a>
+    )}
+    {statusLabel && (
+      <span class="status-badge">{statusLabel}</span>
+    )}
+    {date && (
+      <span class="date-badge">{date}</span>
+    )}
+  </div>
+)}
+
+<style>
+  .page-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.3rem 0 0.8rem 0;
+    font-size: 0.8rem;
+  }
+
+  .stratum-badge,
+  .status-badge,
+  .date-badge {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.3rem;
+    font-weight: 500;
+    font-family: var(--__sl-font-mono, monospace);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  /* Stratum badge is a link — make it obviously clickable on hover
+   * without fighting the default link-underline. */
+  a.stratum-badge:hover {
+    filter: brightness(1.2);
+    text-decoration: none;
+  }
+
+  .stratum-1 {
+    background: color-mix(in srgb, var(--sl-color-purple, #9b6cd8) 15%, transparent);
+    color: var(--sl-color-purple, #9b6cd8);
+    border: 1px solid color-mix(in srgb, var(--sl-color-purple, #9b6cd8) 30%, transparent);
+  }
+
+  .stratum-2 {
+    background: color-mix(in srgb, var(--sl-color-blue, #4b8dde) 15%, transparent);
+    color: var(--sl-color-blue, #4b8dde);
+    border: 1px solid color-mix(in srgb, var(--sl-color-blue, #4b8dde) 30%, transparent);
+  }
+
+  .stratum-3 {
+    background: color-mix(in srgb, var(--sl-color-green, #3fa55d) 15%, transparent);
+    color: var(--sl-color-green, #3fa55d);
+    border: 1px solid color-mix(in srgb, var(--sl-color-green, #3fa55d) 30%, transparent);
+  }
+
+  .stratum-4 {
+    background: color-mix(in srgb, var(--sl-color-yellow, #d4a73a) 15%, transparent);
+    color: var(--sl-color-yellow, #d4a73a);
+    border: 1px solid color-mix(in srgb, var(--sl-color-yellow, #d4a73a) 30%, transparent);
+  }
+
+  .stratum-5 {
+    background: color-mix(in srgb, var(--sl-color-gray-3, #9a9a9a) 20%, transparent);
+    color: var(--sl-color-gray-3, #9a9a9a);
+    border: 1px solid color-mix(in srgb, var(--sl-color-gray-3, #9a9a9a) 35%, transparent);
+  }
+
+  .status-badge {
+    background: color-mix(in srgb, var(--sl-color-accent, #8c7851) 12%, transparent);
+    color: var(--sl-color-accent, #8c7851);
+    border: 1px solid color-mix(in srgb, var(--sl-color-accent, #8c7851) 25%, transparent);
+  }
+
+  .date-badge {
+    background: color-mix(in srgb, var(--sl-color-gray-5, #666) 15%, transparent);
+    color: var(--sl-color-gray-5, #666);
+    border: 1px solid color-mix(in srgb, var(--sl-color-gray-5, #666) 25%, transparent);
+  }
+</style>
