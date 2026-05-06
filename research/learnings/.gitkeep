@@ -1,0 +1,3 @@
+# This directory is for agent-discovered insights
+# Files should follow: YYYY-MM-DD-topic-name.md
+# With proper YAML frontmatter (created, updated, tags)

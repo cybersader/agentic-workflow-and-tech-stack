@@ -1,0 +1,7 @@
+name: minimal
+display_name: "Minimal"
+description: "Bare essentials - AGENTS.md + CLAUDE.md only. Quick start for any project."
+category: general
+features: [agents-md, claude-md]
+requires_git: false
+post_setup: "Add domain skills with skill-writer agent. Use /scaffold for deeper setup."

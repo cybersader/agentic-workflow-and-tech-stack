@@ -1,0 +1,13 @@
+AGENTS.md
+CLAUDE.md
+knowledge-base/README.md
+knowledge-base/00-inbox/_README.md
+knowledge-base/01-working/_README.md
+knowledge-base/02-learnings/_README.md
+knowledge-base/03-reference/_README.md
+knowledge-base/04-archive/_README.md
+.claude/settings.local.json
+.claude/scripts/check-complete.sh
+.claude/scripts/read-plan.sh
+.claude/scripts/check-knowledge.sh
+.claude/skills/knowledge-curator/SKILL.md

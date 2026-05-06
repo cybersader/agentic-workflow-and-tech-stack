@@ -1,0 +1,7 @@
+name: knowledge-base
+display_name: "Knowledge Base (Temperature Gradient)"
+description: "Full 5-zone temperature gradient with hooks and knowledge-curator skill."
+category: knowledge
+features: [agents-md, claude-md, knowledge-base, hooks, skills]
+requires_git: false
+post_setup: "Use /task-plan for multi-phase work. Hooks are active for context persistence."

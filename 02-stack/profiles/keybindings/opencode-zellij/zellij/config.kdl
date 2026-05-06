@@ -1,0 +1,93 @@
+// ============================================================================
+// ZELLIJ CONFIG: opencode-zellij profile
+// Optimized for TUI apps (OpenCode, Claude Code, vim)
+// Keys pass through to app by default - unlock with Ctrl+G
+// ============================================================================
+
+// Sessions die cleanly when terminal closes (no EXITED clutter)
+// Use `zp <name>` helper to start a persistent/resurrectable session
+session_serialization false
+
+default_mode "locked"
+
+// Optional: Load autolock plugin (auto-locks when vim/opencode detected)
+// Download: https://github.com/fresh2dev/zellij-autolock/releases
+// plugins {
+//     autolock location="file:~/.config/zellij/plugins/zellij-autolock.wasm" {
+//         triggers "nvim|vim|opencode|claude"
+//     }
+// }
+
+keybinds {
+    // ========================================================================
+    // LOCKED MODE (default) - All keys pass to application
+    // ========================================================================
+    locked {
+        bind "Ctrl g" { SwitchToMode "Normal"; }
+    }
+
+    // ========================================================================
+    // NORMAL MODE (unlocked) - Zellij commands available
+    // ========================================================================
+    shared_except "locked" {
+        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Esc" { SwitchToMode "Locked"; }
+    }
+
+    normal {
+        // Session/quit
+        bind "d" { Detach; }
+        bind "q" { Quit; }
+
+        // Tabs
+        bind "n" { NewTab; }
+        bind "x" { CloseFocus; }
+        bind "1" { GoToTab 1; }
+        bind "2" { GoToTab 2; }
+        bind "3" { GoToTab 3; }
+        bind "4" { GoToTab 4; }
+        bind "5" { GoToTab 5; }
+        bind "Tab" { GoToNextTab; }
+
+        // Panes
+        bind "|" { NewPane "Right"; }
+        bind "-" { NewPane "Down"; }
+        bind "h" { MoveFocus "Left"; }
+        bind "j" { MoveFocus "Down"; }
+        bind "k" { MoveFocus "Up"; }
+        bind "l" { MoveFocus "Right"; }
+
+        // Resize
+        bind "=" { Resize "Increase"; }
+        bind "+" { Resize "Increase"; }
+        bind "_" { Resize "Decrease"; }
+
+        // Scroll
+        bind "[" { SwitchToMode "Scroll"; }
+
+        // Floating
+        bind "f" { ToggleFloatingPanes; }
+        bind "F" { TogglePaneEmbedOrFloating; }
+    }
+
+    scroll {
+        bind "Esc" { SwitchToMode "Locked"; }
+        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "j" "Down" { ScrollDown; }
+        bind "k" "Up" { ScrollUp; }
+        bind "d" { HalfPageScrollDown; }
+        bind "u" { HalfPageScrollUp; }
+        bind "g" { ScrollToTop; }
+        bind "G" { ScrollToBottom; }
+    }
+}
+
+// Appearance
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}
+
+// Theme (optional - uncomment to use)
+// theme "dracula"

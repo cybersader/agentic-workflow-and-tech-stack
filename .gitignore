@@ -1,0 +1,41 @@
+# Tools - independent git repos
+tools/terminal-workspaces/
+tools/claudecode-project-sync/
+
+# Editor/IDE configs (user-specific)
+.obsidian/
+.opencode/
+.vscode/
+
+# Claude Code runtime state (not content)
+.claude/scheduled_tasks.lock
+.claude/plans/
+.claude/cache/
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor temp files
+*.swp
+*.swo
+*~
+
+# Personal workflow (not for public)
+research/personal-workflow/
+tools/sharex-clip2path/
+
+# Private / gated
+03-work/homelab/
+
+# Generated audit reports (may contain concentrated PII mirrors — regenerate locally)
+00-meta/stratum-audit/pii-findings.md
+00-meta/stratum-audit/report.md
+
+# Build artifacts
+site/dist/
+site/.astro/
+site/node_modules/
