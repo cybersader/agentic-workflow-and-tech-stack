@@ -1,0 +1,25 @@
+# ~/.ssh/config — Example SSH shortcuts for Tailscale
+#
+# Copy to ~/.ssh/config and customize with your values.
+# With Tailscale SSH, no key exchange needed — auth handled by Tailscale.
+#
+# Usage: ssh desktop   (instead of ssh user@100.x.x.x)
+
+# Desktop (WSL via Tailscale)
+Host desktop
+    HostName [YOUR_TAILSCALE_HOSTNAME_OR_IP]
+    User [YOUR_WSL_USERNAME]
+    # Example: HostName desktop-pc
+    # Example: HostName 100.64.0.1
+    # Tailscale SSH handles auth — no IdentityFile needed
+
+# Homelab server
+Host homelab
+    HostName [YOUR_HOMELAB_TAILSCALE_HOSTNAME]
+    User [YOUR_USERNAME]
+
+# Tips:
+# - Use `tailscale status` to find hostnames/IPs
+# - Tailscale MagicDNS lets you use hostnames instead of IPs
+# - Add `ServerAliveInterval 60` to prevent SSH timeout
+# - For Termux: install openssh (`pkg install openssh`)

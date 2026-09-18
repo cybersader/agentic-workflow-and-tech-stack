@@ -1,0 +1,38 @@
+{
+  // ============================================================================
+  // VS CODE SETTINGS: opencode-zellij profile
+  // Merge these settings into your VS Code settings.json
+  // ============================================================================
+
+  // TERMINAL KEY PASSTHROUGH
+  // These settings ensure keys go to the terminal (and thus Zellij/OpenCode)
+  // instead of being intercepted by VS Code
+
+  // Pass all keybindings to terminal when focused
+  "terminal.integrated.sendKeybindingsToShell": true,
+
+  // Allow Ctrl+K to pass through (used by many TUI apps)
+  "terminal.integrated.allowChords": false,
+
+  // OPTIONAL: Customize which keys VS Code keeps vs passes through
+  // Uncomment and modify if you want VS Code to handle some keys
+  // "terminal.integrated.commandsToSkipShell": [
+  //   "workbench.action.toggleSidebarVisibility",
+  //   "workbench.action.quickOpen",
+  //   "workbench.action.showCommands"
+  // ],
+
+  // TERMINAL APPEARANCE (optional)
+  // "terminal.integrated.fontFamily": "JetBrains Mono, Consolas, monospace",
+  // "terminal.integrated.fontSize": 14,
+
+  // TERMINAL BEHAVIOR
+  // Prevent terminal from losing focus on certain actions
+  "terminal.integrated.focusAfterRun": "terminal",
+
+  // Use WSL as default profile (adjust to your setup)
+  // "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+
+  // OPTIONAL: GPU acceleration for smoother rendering
+  // "terminal.integrated.gpuAcceleration": "auto"
+}

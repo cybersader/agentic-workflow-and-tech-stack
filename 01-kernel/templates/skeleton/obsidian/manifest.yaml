@@ -1,0 +1,7 @@
+name: obsidian
+display_name: "Obsidian Vault"
+description: "Personal knowledge management with Obsidian linking, tagging, and templates."
+category: pkm
+features: [agents-md, claude-md, obsidian-templates]
+requires_git: false
+post_setup: "Open in Obsidian. Use skill-writer for vault-specific expertise."

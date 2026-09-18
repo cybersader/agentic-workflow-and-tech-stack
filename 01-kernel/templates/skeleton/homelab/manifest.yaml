@@ -1,0 +1,7 @@
+name: homelab
+display_name: "Homelab Infrastructure"
+description: "Documentation-first infrastructure with architecture, roadmap, and environment docs."
+category: infrastructure
+features: [agents-md, claude-md, architecture-docs, environment]
+requires_git: false
+post_setup: "Start with ARCHITECTURE.md. Use skill-writer for service-specific expertise."
