@@ -1,0 +1,7 @@
+name: research-kb
+display_name: "Research Knowledge Base"
+description: "Structured research with numbered progression from overview to recommendations."
+category: research
+features: [agents-md, claude-md, numbered-progression]
+requires_git: false
+post_setup: "Start with 00-overview/VISION.md. Use skill-writer for domain expertise."

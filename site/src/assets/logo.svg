@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40">
+  <style>
+    .t { font-family: 'JetBrains Mono', 'Menlo', monospace; font-weight: 600; }
+    .n { font-size: 14px; fill: #878580; letter-spacing: 0.02em; }
+    .l { font-size: 15px; fill: #8c7851; letter-spacing: 0.02em; }
+  </style>
+  <text x="0" y="26" class="t n">02/</text>
+  <text x="30" y="26" class="t l">agentic-workflow</text>
+</svg>
