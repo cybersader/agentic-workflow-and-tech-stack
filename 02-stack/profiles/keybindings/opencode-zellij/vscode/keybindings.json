@@ -1,0 +1,76 @@
+// ============================================================================
+// VS CODE KEYBINDINGS: opencode-zellij profile
+// Merge these keybindings into your VS Code keybindings.json
+// Access via: Ctrl+Shift+P → "Preferences: Open Keyboard Shortcuts (JSON)"
+// ============================================================================
+
+[
+  // TERMINAL FOCUS SHORTCUTS
+  // Quick access to terminal without mouse
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "workbench.action.terminal.new"
+  },
+
+  // PASS CTRL+G TO TERMINAL (Zellij unlock key)
+  // This ensures Ctrl+G goes to Zellij instead of VS Code's "Go to Line"
+  {
+    "key": "ctrl+g",
+    "command": "-editor.action.gotoLine",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0007" },
+    "when": "terminalFocus"
+  },
+
+  // PASS CTRL+Q TO TERMINAL (after flow control disabled)
+  // Prevents VS Code from intercepting quit signals
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quit",
+    "when": "terminalFocus"
+  },
+
+  // PASS CTRL+S TO TERMINAL (after flow control disabled)
+  // Some TUI apps use Ctrl+S for search/save
+  {
+    "key": "ctrl+s",
+    "command": "-workbench.action.files.save",
+    "when": "terminalFocus"
+  },
+
+  // OPTIONAL: Pass Ctrl+W to terminal (close pane in Zellij)
+  // Uncomment if you want Ctrl+W to go to terminal instead of closing tab
+  // {
+  //   "key": "ctrl+w",
+  //   "command": "-workbench.action.closeActiveEditor",
+  //   "when": "terminalFocus"
+  // },
+
+  // QUICK TERMINAL NAVIGATION
+  // Navigate between terminals without mouse
+  {
+    "key": "ctrl+pagedown",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+pageup",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+
+  // MAXIMIZE TERMINAL (useful when in full TUI mode)
+  {
+    "key": "ctrl+shift+m",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "terminalFocus"
+  }
+]

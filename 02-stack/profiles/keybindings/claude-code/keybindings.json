@@ -1,0 +1,20 @@
+{
+  "$schema": "https://platform.claude.com/docs/schemas/claude-code/keybindings.json",
+  "$docs": "https://code.claude.com/docs/en/keybindings",
+  "bindings": [
+    {
+      "context": "Chat",
+      "bindings": {
+        "f2": "chat:cycleMode",
+        "alt+m": "chat:cycleMode"
+      }
+    },
+    {
+      "context": "Confirmation",
+      "bindings": {
+        "f2": "confirm:cycleMode",
+        "alt+m": "confirm:cycleMode"
+      }
+    }
+  ]
+}

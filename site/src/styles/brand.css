@@ -1,0 +1,125 @@
+/* Brand customizations — refinements to Flexoki's palette for this project */
+
+/* Custom cards for the homepage tier grid */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.tier-card {
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--sl-color-gray-6, #d0cdc4);
+  background: var(--sl-color-gray-7, #f2f0e5);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--sl-color-accent, #8c7851);
+}
+
+.tier-card h3 {
+  margin-top: 0;
+  font-family: var(--__sl-font-mono, monospace);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--sl-color-accent, #8c7851);
+}
+
+.tier-card p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  color: var(--sl-color-text-accent, #4a4a45);
+}
+
+:root[data-theme="dark"] .tier-card {
+  border-color: var(--sl-color-gray-5, #575653);
+  background: color-mix(in srgb, var(--sl-color-gray-6, #403e3c) 40%, transparent);
+}
+
+/* Callout for the vision block on the homepage */
+.vision-block {
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-left: 4px solid var(--sl-color-accent, #8c7851);
+  background: color-mix(in srgb, var(--sl-color-accent, #8c7851) 6%, transparent);
+  border-radius: 0 0.3rem 0.3rem 0;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Numeric section labels (like 01, 02, 03 principle pages) */
+.numeric-label {
+  display: inline-block;
+  min-width: 2.5rem;
+  font-family: var(--__sl-font-mono, monospace);
+  color: var(--sl-color-gray-3, #878580);
+  font-weight: 600;
+}
+
+/* ─── Inline code contrast fix ───────────────────────────────────────────
+   Flexoki's default inline code background is too subtle against the
+   page in dark mode — olive-on-dark with low separation. Boost both
+   modes so code stays legible.
+*/
+
+/* Scope: inline code (not code blocks). "code:not(pre code)" keeps
+   the fix out of syntax-highlighted <pre><code> blocks which have their
+   own Shiki styling. */
+.sl-markdown-content code:not(pre code) {
+  background: color-mix(in srgb, var(--sl-color-accent, #8c7851) 12%, var(--sl-color-bg, #fff));
+  color: var(--sl-color-accent-high, #5e4a2b);
+  padding: 0.12em 0.42em;
+  border-radius: 0.28em;
+  border: 1px solid color-mix(in srgb, var(--sl-color-accent, #8c7851) 25%, transparent);
+  font-size: 0.92em;
+  font-weight: 500;
+}
+
+:root[data-theme="dark"] .sl-markdown-content code:not(pre code) {
+  /* Dark mode — higher contrast: lift toward paper-tan text on deeper ground */
+  background: rgba(207, 174, 118, 0.14);         /* warm flexoki-tan wash */
+  color: #d4a27a;                                /* flexoki-orange-ish */
+  border-color: rgba(207, 174, 118, 0.28);
+}
+
+/* Inside tables (common in docs) — make sure contrast holds even against
+   the slightly different table row background */
+.sl-markdown-content table code:not(pre code) {
+  background: color-mix(in srgb, var(--sl-color-accent, #8c7851) 16%, transparent);
+}
+
+:root[data-theme="dark"] .sl-markdown-content table code:not(pre code) {
+  background: rgba(207, 174, 118, 0.18);
+  border-color: rgba(207, 174, 118, 0.32);
+}
+
+/* Fenced code blocks — keep Shiki's theme but bump the container so it
+   stands apart from the page */
+.sl-markdown-content pre {
+  border: 1px solid color-mix(in srgb, var(--sl-color-accent, #8c7851) 20%, transparent);
+}
+
+:root[data-theme="dark"] .sl-markdown-content pre {
+  border-color: rgba(207, 174, 118, 0.18);
+  background: #16161a !important;  /* slightly darker than page for separation */
+}
+
+/* ─── starlight-site-graph backlinks duplication workaround ──────────────
+   The plugin server-renders one <ul class="slsg-backlinks"> per backlink
+   (N lists, 1 item each), then a client-side script hydrates only the
+   first <ul> with the full list from sitemap.json — leaving the other
+   server-rendered <ul>s as leftover duplicates. Until the upstream plugin
+   merges them, hide all but the first.
+*/
+.slsg-backlinks-panel ul.slsg-backlinks:not(:first-of-type) {
+  display: none;
+}
+
+/* (Mobile hide rule removed — crosswalker renders the graph fine on mobile,
+   so my empty-rectangle was a setup-specific issue, not a viewport issue.)
+*/
